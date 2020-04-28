@@ -8,16 +8,34 @@
 
 ## Technologies used
 
-This project was developed with the following technologies:
-
 - [ReactJS](https://reactjs.org/)
 - [React Navigation](https://reactnavigation.org/)
 - [styled-components](https://www.styled-components.com/)
 - [VS Code][vc] with [EditorConfig][vceditconfig] and [ESLint][vceslint]
 
----
+## :information_source: How To Use
 
-Made by Kalil Peixoto :wave: [Get in touch!](www.linkedin.com/in/kalilpeixoto)
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher installed on your computer. From your command line:
+
+<br/>
+
+```bash
+# Clone this repository
+$ git clone https://github.com/kalilmvp/gobarber-web.git gobarber_web
+
+# Go into the repository
+$ cd gobarber_web
+
+# Install dependencies
+$ yarn install
+
+# Run the app
+$ yarn start
+```
+
+## <br/>
+
+Made by Kalil Peixoto :wave: [Get in touch!](https://www.linkedin.com/in/kalilpeixoto)
 
 [nodejs]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
