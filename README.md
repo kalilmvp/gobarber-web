@@ -6,7 +6,7 @@
 
 <br/>
 
-## Technologies used
+## :computer: Technologies used
 
 - [ReactJS](https://reactjs.org/)
 - [React Navigation](https://reactnavigation.org/)
