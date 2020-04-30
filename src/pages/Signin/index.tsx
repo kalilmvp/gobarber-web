@@ -1,34 +1,50 @@
-import React, { useCallback, useRef } from 'react';
-import { FiLogIn, FiLock, FiMail } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import React, { useCallback, useRef } from 'react';
+import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
-import { Container, Content, Background } from './styles';
-
 import logo from '../../assets/logo.svg';
-
-import Input from '../../components/Input';
 import Button from '../../components/Button';
-
+import Input from '../../components/Input';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { Background, Container, Content } from './styles';
+
+interface SigninFormData {
+  email: string;
+  password: string;
+}
 
 const Signin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string().required('Email é obrigatório'),
-        password: Yup.string().required('Password é obrigatório'),
-      });
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      console.error(err);
+  const { user, signIn } = useAuth();
 
-      formRef.current?.setErrors(getValidationErrors(err));
-    }
-  }, []);
+  console.log(user);
+
+  const handleSubmit = useCallback(
+    async (data: SigninFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          email: Yup.string().required('Email é obrigatório'),
+          password: Yup.string().required('Password é obrigatório'),
+        });
+        await schema.validate(data, { abortEarly: false });
+
+        signIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        console.error(err);
+
+        formRef.current?.setErrors(getValidationErrors(err));
+      }
+    },
+    [signIn]
+  );
 
   return (
     <Container>
